@@ -1,7 +1,7 @@
 ---
 title: "Reproducible Research (1)"
 author: "Zhuanghua Shi"
-date: "13 April 2016"
+date: "14 April 2016"
 output: beamer_presentation
 ---
 
@@ -11,9 +11,13 @@ knitr::opts_chunk$set(echo = FALSE)
 options(xtable.comment=FALSE, fig.width = 4, fig.height=3, digits = 2) #hide  comments
 ```
 
+## shared folder
+
+https://goo.gl/1KIMnQ
+
 ## A survey
 
-- How many times do you usually repeat for analyzing the same dataset?
+* How many times do you usually repeat for analyzing the same dataset?
 - Have you ever experienced big mistakes simply due to small coding errors or dumb copy-and-paste?
 - Do you feel a need for filling a gap between data analysis and writing?
 
@@ -175,6 +179,7 @@ You can find many git GUI clients in its [official website](https://git-scm.com/
 
 Git is integrated in latest RStudio and Matlab. You can direct do git tasks inside R or Matlab. 
 
+
 ## Course schedule
 ```{r, comment=NA,message=FALSE, results='asis'}
 dates <- seq(as.Date('2016-04-14'), length.out = 6,by='2 weeks')
@@ -186,7 +191,7 @@ contents <- c('Version control system - git',
               'Statstics and Modeling',
               'Reusable data analysis',
               'RMarkdown and writing')
-xtable(data.frame(dates, contents))
+kable(data.frame(dates, contents))
 ```
 
 
