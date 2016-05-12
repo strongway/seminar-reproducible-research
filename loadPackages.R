@@ -5,7 +5,7 @@ usePackage <- function(pk){
   }
 }
 usePackage(c('knitr','R.matlab','data.table','xtable','dplyr','tidyr',
-             'broom','ggplot2','nlme', 'cowplot','ez'))
+             'broom','ggplot2','ggvis','nlme', 'cowplot','ez'))
 
 theme_set(theme_bw(base_size = 12))
 

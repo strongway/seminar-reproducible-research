@@ -60,7 +60,7 @@ importTData <- function(fn) {
 }
 
 subfiles <- dir(file.path('examples', 'ternus-data'))
-t_data <- do.call(rbind, lapply(subfiles, importTData))
+ternus_data <- do.call(rbind, lapply(subfiles, importTData))
 
 # import RT data
 # read data from text file
@@ -132,3 +132,11 @@ t_data %>% group_by(sub,soa)  %>% summarise(m = mean(resp)) %>%
     geom_smooth(method=glm, method.args= list(family = binomial(probit)), se = FALSE) +
     xlab('SOA (ms)') + ylab('Prop. of group motion')+ legend_pos(c(0.2,0.8)) + facet_wrap(~sub)
 
+## ---- psychometric analysis ----
+
+t_data %>% group_by(sub, soa) %>% 
+  summarise(mResp = mean(resp) ) %>%
+  do(tidy(glm(cbind(mResp,1-mResp) ~ soa, family = binomial(probit), data=.))) %>%
+  select(.,one_of(c('sub', 'term','estimate' ))) %>%
+  spread(., term, estimate) %>%
+  mutate(pse = - `(Intercept)`/soa) -> pses
