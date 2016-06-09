@@ -1,0 +1,48 @@
+---
+title: "Reproducible Research (2)"
+subtitle: "Reusable data analysis"
+author: "Zhuanghua Shi"
+date: "9 June 2016"
+output: beamer_presentation
+header-includes:
+  - \usetheme{metropolis}
+---
+  
+```{r setup, include=FALSE}
+source('loadPackages.R')
+options(xtable.comment=FALSE, fig.width = 4, fig.height=3, digits = 2) #hide  comments
+```
+
+## Github repository
+
+> git clone https://github.com/strongway/seminar-reproducible-research.git
+
+## One big challenge
+
+We do analyses multiple times, and often those analyese are not reusable. 
+
+There is a gap between analysis and writing. 
+
+## Useful techniques
+
+- Functional programs
+- Code segments
+- RMarkdown
+
+## Functional program
+
+- construct functions
+- use lapply, Map instead of for loop
+- use list of functions
+
+## code segments
+
+  > ---- is the code segments ----
+
+Code segments for RMarkdown
+
+
+## RMarkdown
+
+http://rmarkdown.rstudio.com
+
