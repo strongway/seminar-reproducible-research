@@ -1,0 +1,57 @@
+---
+title: "report"
+author: "Zhuanghua Shi"
+date: "9 June 2016"
+output:
+  pdf_document:
+    fig_caption: yes
+    latex_engine: xelatex
+  html_document: default
+header-includes:
+   - \usepackage{float}  
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+output <- opts_knit$get("rmarkdown.pandoc.to")
+opts_chunk$set(tidy=FALSE, warning=FALSE, echo=FALSE, dev = c("pdf"), dpi=300, fig.pos = 'H', fig.align = 'center')
+knitr::read_chunk('session3_plots.R')
+```
+
+```{r loadData,  message= FALSE, include=FALSE}
+
+```
+
+## Introduction
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. 
+
+```{r hist, message = FALSE, fig.width= 4, fig.height=3, fig.cap="Reaction Time Histogram from Experiment 1"}
+
+```
+
+## Results
+
+### RT analysis
+
+insert RT bars, and rt errorbars
+```{r rt_bars, message = FALSE, fig.width= 4, fig.height=3, fig.cap="Mean Reaction Time from Experiment 1"}
+
+```
+
+```{r rt_errorbars, message = FALSE, fig.width= 4, fig.height=3, fig.cap="Mean Error bars from Experiment 1"}
+
+```
+
+In this experiment, we get the mean RT for the target presence was `r mean(mRTData[target=='Present',mRT])*1000` ms. In contrast, the mean RT for the target absence was `r mean(mRTData[target=='Absent',mRT])*1000` ms.
+
+### Psychometric function
+
+insert psychometric curve
+
+```{r ternus_curve, message = FALSE, fig.width= 4, fig.height=3, fig.cap="Mean Error bars from Experiment 1"}
+
+```
+
+
+

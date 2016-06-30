@@ -1,11 +1,14 @@
+# ---- loadData ----
 source('loadPackages.R')
 source('import_sampleData.R')
 
 ## ggplot basic grammars
 # data, coordinate system, geom_<elements>
 
+# ---- hist ---- 
 ggplot(rt_data, aes(x=rt)) + geom_histogram()
 
+# ---- rt_bars ----
 # combination with dplyr 
 rt_data %>% filter(outlier == FALSE) %>% 
   group_by(block, target) %>% 
@@ -19,7 +22,7 @@ ggplot(mRTData, aes(x=block, y = mRT, fill = target, color = target)) +
   ylab('Mean RTs +/- SE (ms) ') +
   theme_bw()
 
-
+# ---- rt_errorbars ----
 ggplot(mRTData, aes(x=as.numeric(block), y = mRT, shape = target, color = target)) + 
   geom_line() + geom_point(size = 3) +   
   geom_errorbar(aes(ymin = mRT -seRT , ymax = mRT + seRT),  width = 0.2) +
@@ -28,7 +31,18 @@ ggplot(mRTData, aes(x=as.numeric(block), y = mRT, shape = target, color = target
   xlab('Block Target Absent:Present Ratio') + 
   ylab('Mean RTs +/- SE (ms) ') 
 
+# ---- anova_rt ----
+anova_rt_table <- rt_data %>% filter(outlier == FALSE & error == FALSE) %>%
+  group_by(sub, block, target, dimension) %>% 
+  summarise(mRT = mean(rt)) %>%
+  ezANOVA(., dv = mRT, wid = sub, within = .(block, target, dimension))
+#library('papaja')
+#apa_table(anova_rt_table$ANOVA,
+#          caption = 'ANOVA table for RT analysis')
 
+xtable(anova_rt_table$ANOVA)
+
+# ---- additional RT analysis ----
 # reuse plots
 
 p <- ggplot(mRTData)
@@ -40,6 +54,7 @@ p2 %+% (rt_data %>% filter(error) %>% group_by(target, block) %>% summarize(mRT 
 
 # geom_smooth curve estimation
 
+# ---- ternus_curve ----
 ternus_data %>% group_by(soa) %>% summarise(m = mean(resp)) -> mResp
 
 fig <- mResp %>% ggplot(aes(x=soa, y=m)) + geom_point()

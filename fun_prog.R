@@ -6,7 +6,7 @@ names(df) <- letters[1:6]
 # solution 1
 df$a[df$a == -99] <- NA
 df$b[df$b == -99] <- NA
-df$c[df$c == -98] <- NA
+df$c[df$c == -99] <- NA
 df$d[df$d == -99] <- NA
 df$e[df$e == -99] <- NA
 df$f[df$g == -99] <- NA
@@ -35,8 +35,8 @@ df[] <- lapply(df, fix_missing)
 
 # using list of functions
 compute_mean <- list(
-  base = function(x) mean(x),
-  sum = function(x) sum(x) / length(x),
+  base = function(x) mean(x, na.rm = T),
+  sum = function(x) sum(x, na.rm = T) / length(x),
   manual = function(x) {
     total <- 0
     n <- length(x)
@@ -50,6 +50,6 @@ compute_mean <- list(
 # Using list functions, and lapply 
 
 compute_mean$base(df$c)
-lapply(compute_mean, function(f) f(df$c))
+results <- lapply(compute_mean, function(f) f(df$c))
 
 

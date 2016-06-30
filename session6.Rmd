@@ -1,0 +1,74 @@
+---
+title: "Reproducible Research (6)"
+subtitle: "RMarkdown and writing"
+author: "Zhuanghua Shi"
+date: "30 June 2016"
+output: beamer_presentation
+header-includes:
+  - \usetheme{metropolis}
+---
+  
+```{r setup, include=FALSE}
+source('loadPackages.R')
+options(xtable.comment=FALSE, fig.width = 4, fig.height=3, digits = 2) #hide  comments
+```
+
+## Research stages
+
+- Experimental design and conduction
+- Data analysis and interpretation
+- Writing reports and manuscripts
+
+## Seamless integration
+
+- use reusable code snippets 
+    - functional programs
+- combine RMardown
+
+## Last session
+
+- functional programs
+- code snippets in RMarkdown
+- Insert graphs
+
+## This week
+
+- APA or journal article templates
+- insert tables
+- insert citations
+
+## Journal templates
+
+- 'rticles' package
+
+  > devtools::install_github("rstudio/rticles")
+  
+- 'papaja' package
+
+  > devtools::install_github("crsh/papaja")
+  
+After your install, select 'New RMardown' - 'from template'
+
+Note: These two packages are mainly for rendering pdfs. 
+
+
+## Citations
+
+RStudio doesn't provide good support for citations. There are three solutions:
+
+1. Convert markdown text to word, and using word citation managers (e.g., Endnote, Mendeley)
+2. Using other text editor that support latex citations (e.g., Atom with autocomplete-bibtex)
+3. Copy Mendeley latex citation and insert
+
+## Combine multiple rmd files
+
+In certain situations, you want to combine multiple rmarkdown files together (e.g., writing your thesis, split paper into multiple parts). 
+You can use 'child' option in r snippet. 
+
+  > ```{r child='subfile.rmd'} ```
+
+
+
+
+
+
